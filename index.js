@@ -38,12 +38,7 @@ const folder = '/Users/lala/Documents/Laboratoria/Proyecto4 - MDLinks/CDMX013-md
     }
   }) */
 
-/* filenames = fs.readdirSync(folder);
-  
-console.log("\nCurrent directory filenames:");
-filenames.forEach(file => {
-  console.log(file);
-}); */
+
 
 
 const getFileList = (dirName) => {
@@ -59,10 +54,14 @@ const getFileList = (dirName) => {
       }
   })
   return files;
-  /* const mdFiles = files.map((file) => (path.extname(file) == ".md"));
-  return mdFiles; */
 };
 
-const files = getFileList(folder);
+const Files = getFileList(folder);
+const fileToWork = [];
+Files.forEach(file => {
+  if (path.extname(file) == ".md") {
+    return fileToWork.push(file);
+  }      
+})
 
-console.log(files);
+console.log(fileToWork);
