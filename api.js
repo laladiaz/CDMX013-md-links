@@ -13,30 +13,26 @@ const recursive = (dirName) => {
 }
 
 module.exports = mdLinks = (filePath) => {
-    //check if filePath is absolute or relative -> if crash do it
-    //if the path given is a file
-    //if the path given is a directory
-    // get the directory content
+  // create the return promise function
+    //check if filePath is absolute or relative
+    const absolutePath = path.isAbsolute(filePath) ? filePath : path.resolve(filePath);
+    console.log (absolutePath)
+    // if the path given is a directory, get the directory content, if the path given is a file, does not enter the recursive function
     let dirFiles = [];
-    fs.lstatSync(filePath).isDirectory() ? dirFiles = [...dirFiles, ...recursive(filePath)] : dirFiles.push(filePath);
-    // const dirFiles = recursive(filePath);
-
-    console.log(dirFiles.length);
-
+    fs.lstatSync(absolutePath).isDirectory() ? dirFiles = [...dirFiles, ...recursive(absolutePath)] : dirFiles.push(absolutePath);
     // get the .md file
     const fileArray = dirFiles.filter(file => {
         if (path.extname(file) == ".md") {
           return file;
         }
       })
-    // const fileToWork = fileArray.toString();
-
-    const content = fileArray.forEach((file) => {
-
-        console.log(fs.readFileSync(file, 'utf-8'))
-        console.log();
+    fileArray.forEach((file) => {
+      // read the files
+      const content = fs.readFileSync(file, 'utf-8');
+      // obtain the urls
+      const regExp = /\[(.+)\]\((https?:\/\/.+)\)/gi;
+      const linksFound = content.match(regExp);
+      console.log(linksFound);
       })
-
       return fileArray;
   };
-  //console.log(MDLinks('/Users/lala/Documents/Laboratoria/Proyecto4 - MDLinks/CDMX013-md-links'));

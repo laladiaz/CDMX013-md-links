@@ -5,4 +5,4 @@ const folder = '/Users/lala/Documents/Laboratoria/Proyecto4 - MDLinks/CDMX013-md
 const folderRelative = './test';
 
 
-console.log('hola:::', mdLinks(folder));
+console.log(mdLinks(folderRelative));
