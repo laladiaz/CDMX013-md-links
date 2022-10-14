@@ -1,7 +1,9 @@
-const fs = require('fs');
-const path = require('path');
+/* const fs = require('fs');
+const path = require('path'); */
+const mdLinks = require('./api.js')
 const isMd = 'README.md';
 const folder = '/Users/lala/Documents/Laboratoria/Proyecto4 - MDLinks/CDMX013-md-links';
+
 // Read a file
 
 /* fs.readFile(isMd, 'utf8', (err, data) => {
@@ -12,56 +14,34 @@ const folder = '/Users/lala/Documents/Laboratoria/Proyecto4 - MDLinks/CDMX013-md
   console.log(data);
 }); */
 
-// Obtain the file extension
-
-// console.log(path.extname(isMd));
-
 // Obtain the directory content
-// read directory and tells the filenames
-  // go through the dir and gives you the .md file
 
-/* fs.readdir(folder, (err, files) => {
-    if (err)
-      console.log(err);
-    else {
-      console.log("Current directory filenames:");
-      files.forEach(file => {
-        console.log(file);
-      })
-
-      console.log("Filenames with the .md extension:");
-      files.forEach(file => {
-        if (path.extname(file) == ".md") {
-            console.log(file);
-        }      
-      })
-    }
-  }) */
-
-
-
-
-const getFileList = (dirName) => {
+/* const getFileList = (dirName) => {
   let files = [];
   const items = fs.readdirSync(dirName, { withFileTypes: true });
-
-  items.forEach((item) => {
+  items.map((item) => {
     const pathW = path.join(dirName, item.name);
-      if (item.isDirectory()) {
-          files = [...files, ...getFileList(pathW)];
-      } else {
-          files.push(pathW);
-      }
-  })
+    return item.isDirectory() ? files = [...files, ...getFileList(pathW)] : files.push(pathW);
+  });
   return files;
 };
 
-const Files = getFileList(folder);
-const fileToWork = [];
-Files.forEach(file => {
+// go through the dir and gives you the .md file
+const fileArray = getFileList(folder).filter(file => {
   if (path.extname(file) == ".md") {
-    return fileToWork.push(file);
-  }      
+    return file;
+  }
 })
 
-console.log(fileToWork);
+console.log(fileArray);
+
+const fileToWork = fileArray.toString();
+
+fs.readFile(fileToWork, 'utf8', (err, data) => {
+  if (err) {
+    return console.error(err);
+  }
+  console.log(data);
+}); */
+
+console.log(mdLinks(folder));
