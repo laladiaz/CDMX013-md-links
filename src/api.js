@@ -1,42 +1,37 @@
-const fs = require('fs');
-const path = require('path');
-// const functions = require('./functions.js');
-
-// Recursive function to get the content of a directory
-const folderContent = (dirName) => {
-  let files = [];
-  const items = fs.readdirSync(dirName, { withFileTypes: true });
-  items.forEach((item) => {
-    const pathW = path.join(dirName, item.name);
-    item.isDirectory() ? files = [...files, ...folderContent(pathW)] : files.push(pathW);
-  });
-  return files;
-}
+const fct = require('./functions.js');
 
 module.exports = mdLinks = (filePath) => {
   // create the return promise function
     //check if filePath is absolute or relative
-    const absolutePath = path.isAbsolute(filePath) ? filePath : path.resolve(filePath);
-    console.log (absolutePath)
+    const absolutePath = fct.isAbsolutePath(filePath) ? filePath :fct.resolvePath(filePath);
     // if the path given is a directory, get the directory content, if the path given is a file, does not enter the recursive function
     let dirFiles = [];
-    fs.lstatSync(absolutePath).isDirectory() ? dirFiles = [...dirFiles, ...folderContent(absolutePath)] : dirFiles.push(absolutePath);
+    fct.isAFolder(absolutePath) ? dirFiles = [...dirFiles, ...fct.folderContent(absolutePath)] : dirFiles.push(absolutePath);
     // get the .md file
     const fileArray = dirFiles.filter(file => {
-        if (path.extname(file) == ".md") {
+        if (fct.mdExtName(file) == ".md") {
           return file;
         }
       })
     fileArray.forEach((file) => {
       // read the files
-      const content = fs.readFileSync(file, 'utf-8');
+      const content = fct.readMdFile(file);
       // obtain the urls
       const regExp = /\[(.+)\]\((https?:\/\/.+)\)/gi;
-      const linksFound = content.match(regExp);
-      console.log(linksFound);
-      // ensambles the array of objects
+      const linksFound = [...content.matchAll(regExp)];
+      if (linksFound !== null || linksFound.length !== 0) {
+        console.log(linksFound);
+      }
+     // ensambles the array of objects
       const arrayOfObject = [];
-
-      })
-      return fileArray;
+      for (let i=0; i<linksFound.length; i++) {
+        arrayOfObject.push({
+          file: file,
+          href: linksFound[i][2],
+          text: linksFound[i][1]
+        })
+      }
+      return arrayOfObject;
+    })
+    return fileArray;
   };
