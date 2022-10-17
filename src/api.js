@@ -1,4 +1,4 @@
-const fct = require('./functions.js');
+const fct = require('./fct.js');
 
 module.exports = mdLinks = (filePath) => {
   // create the return promise function
