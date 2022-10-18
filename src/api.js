@@ -8,11 +8,8 @@ const mdLinks = (filePath) => {
   let dirFiles = [];
   fct.isAFolder(absolutePath) ? dirFiles = [...dirFiles, ...fct.folderContent(absolutePath)] : dirFiles.push(absolutePath);
   // get the .md file
-  const fileArray = dirFiles.filter(file => {
-    if (fct.mdExtName(file) == ".md") {
-      return file;
-    }
-  })
+  const fileArray = dirFiles.filter(file => (fct.mdExtName(file) == ".md"));
+
   let links = [];
   fileArray.forEach((file) => {
     // read the files
@@ -22,20 +19,18 @@ const mdLinks = (filePath) => {
     const linksFound = [...content.matchAll(regExp)];
     if (linksFound !== null || linksFound.length !== 0) {
       // ensambles the array of objects
-      const arrayOfObject = [];
-      for (let i = 0; i < linksFound.length; i++) {
-        arrayOfObject.push({
+      linksFound.forEach(link => {
+        links.push({
           file: file,
-          href: linksFound[i][2],
-          text: linksFound[i][1]
+          href: link[2],
+          text: link[1]
         })
-      }
-      links = [...links, ...arrayOfObject];
+      })
     }
   })
   return links;
 };
 
 module.exports = {
-mdLinks
+  mdLinks
 }
