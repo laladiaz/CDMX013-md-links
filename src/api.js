@@ -13,6 +13,7 @@ module.exports = mdLinks = (filePath) => {
           return file;
         }
       })
+      let links =[];
     fileArray.forEach((file) => {
       // read the files
       const content = fct.readMdFile(file);
@@ -20,18 +21,17 @@ module.exports = mdLinks = (filePath) => {
       const regExp = /\[(.+)\]\((https?:\/\/.+)\)/gi;
       const linksFound = [...content.matchAll(regExp)];
       if (linksFound !== null || linksFound.length !== 0) {
-        console.log(linksFound);
-      }
      // ensambles the array of objects
-      const arrayOfObject = [];
-      for (let i=0; i<linksFound.length; i++) {
-        arrayOfObject.push({
-          file: file,
-          href: linksFound[i][2],
-          text: linksFound[i][1]
-        })
+        const arrayOfObject = [];
+        for (let i=0; i<linksFound.length; i++) {
+          arrayOfObject.push({
+            file: file,
+            href: linksFound[i][2],
+            text: linksFound[i][1]
+          })
+        }
+      links = [...links, ...arrayOfObject];
       }
-      return arrayOfObject;
     })
-    return fileArray;
+    return links;
   };
