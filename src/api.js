@@ -1,6 +1,6 @@
 const fct = require('./fct.js');
 
-module.exports = mdLinks = (filePath) => {
+const mdLinks = (filePath) => {
   // create the return promise function
   //check if filePath is absolute or relative
   const absolutePath = fct.isAbsolutePath(filePath) ? filePath : fct.resolvePath(filePath);
@@ -35,3 +35,7 @@ module.exports = mdLinks = (filePath) => {
   })
   return links;
 };
+
+module.exports = {
+mdLinks
+}
