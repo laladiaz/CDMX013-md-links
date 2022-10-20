@@ -37,7 +37,7 @@ const getLinks = (arrLinks) => {
         links.push({
           file: file,
           href: link[2],
-          text: link[1]
+          text: link[1].slice(0,50)
         })
       })
     }
