@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const axios = require('axios');
 
 // Checks if the path is absolute
 const isAbsolutePath = (dirName) => path.isAbsolute(dirName);
@@ -44,6 +45,8 @@ const getLinks = (arrLinks) => {
   })
   return links
 }
+// make HTTP request with axios.get
+const testGET = (URL) => axios.get(URL);
 
 module.exports = {
   folderContent,
@@ -51,5 +54,6 @@ module.exports = {
   resolvePath,
   isAFolder,
   filteredArray,
-  getLinks
+  getLinks,
+  testGET
 }
