@@ -20,9 +20,6 @@ const folderContent = (dirName) => {
 }
 // get the .md file
 const filteredArray = (dirPath) => dirPath.filter(file => (path.extname(file) == ".md"));
-//const mdExtName = (dirName) => path.extname(dirName);
-// read file
-// const readMdFile = (dirName) => fs.readFileSync(dirName, 'utf-8');
 // get the links in .md
 const getLinks = (arrLinks) => {
   let links = [];
@@ -45,6 +42,8 @@ const getLinks = (arrLinks) => {
   })
   return links
 }
+// obtain the array of links
+const arrayOfLinks = (param) => param.map((item) => (item.href));
 // make HTTP request with axios.get
 const testGET = (URL) => axios.get(URL);
 
@@ -55,5 +54,6 @@ module.exports = {
   isAFolder,
   filteredArray,
   getLinks,
+  arrayOfLinks,
   testGET
 }
