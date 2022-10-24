@@ -1,7 +1,7 @@
 const fct = require('./fct.js');
 const axios = require('axios');
 
-const mdLinks = (filePath, opt) => new Promise((resolve, reject) => {
+const mdLinks = (filePath, opt) => new Promise((resolve) => {
   //check if filePath is absolute or relative
   const absolutePath = fct.isAbsolutePath(filePath) ? filePath : fct.resolvePath(filePath);
   // if the path given is a directory, get the directory content, if the path given is a file, does not enter the recursive function
@@ -12,15 +12,18 @@ const mdLinks = (filePath, opt) => new Promise((resolve, reject) => {
   // array of links
   const allLinks = fct.getLinks(fileArray);
 
-  // resolve(allLinks);
   if (opt.validate === true) {
+    // get an array of only links URL
     const newArray = fct.arrayOfLinks(allLinks);
-
+    // axios.get for every link
     let arrayOfPromises = [];
     newArray.forEach((link) => {
       let promiseLink = axios.get(link)
         .then((result) => {
           return {
+            href: link,
+            text: allLinks.text,
+            file: allLinks.file,
             status: result.status,
             message: result.statusText
           }
@@ -41,9 +44,8 @@ const mdLinks = (filePath, opt) => new Promise((resolve, reject) => {
       });
       arrayOfPromises.push(promiseLink);
     })
-    Promise.all(arrayOfPromises)
-      .then((response) => resolve(response))
-    // resolve(granPromise);
+    return Promise.all(arrayOfPromises)
+     .then((result) => resolve(result));
 
   } else {
     resolve(allLinks);
