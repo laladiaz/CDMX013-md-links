@@ -1,4 +1,4 @@
-const api = require('./src/api.js');
+const api = require('./api.js');
 
 const folderRelative = './test';
 const URL = 'https://axios-http.com/docs/notes';
