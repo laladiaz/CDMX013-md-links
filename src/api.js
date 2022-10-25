@@ -10,13 +10,11 @@ const mdLinks = (filePath, opt) => new Promise((resolve) => {
   const fileArray = fct.filteredArray(dirFiles);
   // array of links
   const allLinks = fct.getLinks(fileArray);
-
   if (opt.validate === true) {
        // axios.get for every link
    const promisesArrayToResolve = fct.promises(allLinks);
     return Promise.all(promisesArrayToResolve)
       .then((result) => resolve(result));
-
   } else {
     return resolve(allLinks);
   }
