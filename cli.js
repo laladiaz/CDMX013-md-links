@@ -1,13 +1,14 @@
 #!/usr/bin/env node
-// const fct = require('./lib/fct.js');
-const api = require('./api.js');
-const mdLinks = api.mdLinks;
+const fct = require('./lib/fct.js');
+/* const api = require('./api.js');
+const mdLinks = api.mdLinks; */
 
 const [,, filePath, ...opt] = process.argv;
 const validateOpt = process.argv.includes('--validate');
 // const statsOpt = process.argv.includes('--stats');
 
-/* const mdLinks = (filePath, opt) => new Promise((resolve) => {
+
+const mdLinks = (filePath, opt) => new Promise((resolve) => {
   // if the path given is a directory, get the directory content, if the path given is a file, does not enter the recursive function
   let dirFiles = [];
   fct.isAFolder(filePath) ? dirFiles = [...dirFiles, ...fct.folderContent(filePath)] : dirFiles.push(filePath);
@@ -16,20 +17,19 @@ const validateOpt = process.argv.includes('--validate');
   // array of links
 
   let links = '';
-  // console.log('este es un ', links);
   fileArray.forEach((file) => {
-    // read the files
+   // read the files
     const content = fct.readFile(file);
     // obtain the urls
-    const regExp = /\[(.+)\]\((https?:\/\/.+)\)/gi;
-    const linksFound = [...content.matchAll(regExp)];
+    const linksFound = fct.regexGetLinks(content);
     if (linksFound !== null || linksFound.length !== 0) {
       // ensambles the array of objects
       linksFound.forEach((link) => {
-      links += file + " | " + link[2] + " | " + link[1].slice(0, 50);
+      links += file + " | " + link[2] + " | " + link[1].slice(0, 50) + "\n";
       })
     }
   })
+
   if(validateOpt === true){
     let arrayOfPromises = [];
     links.forEach((link) => {
@@ -70,6 +70,6 @@ const validateOpt = process.argv.includes('--validate');
     resolve(links);
   }
 
-}) */
+})
 
 mdLinks(filePath, {validate: validateOpt}).then(console.log);
