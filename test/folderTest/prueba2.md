@@ -7,6 +7,7 @@ encontrar varios archivos en ese formato en cualquier tipo de repositorio
 Estos archivos `Markdown` normalmente contienen _links_ (vínculos/ligas) que
 muchas veces están rotos o ya no son válidos y eso perjudica mucho el valor de
 la información que se quiere compartir.
+[Markdown](https://es.wikipedia.org/wiki/Markdown)
 
 Dentro de una comunidad de código abierto, nos han propuesto crear una
 herramienta usando [Node.js](https://nodejs.org/), que lea y analice archivos
@@ -16,3 +17,5 @@ en formato `Markdown`, para verificar los links que contengan y reportar
 ![imagen de prueba](./Background%20Foto%20linked%20in%20Lala-4.png)
 
 [Módulos, librerías, paquetes, frameworks... ¿cuál es la diferencia?](http://community.laboratoria.la/t/modulos-librerias-paquetes-frameworks-cual-es-la-diferencia/175)
+
+[Este es un link que no se encuentra](https://developer.mozilla.org/e/docs/Web/JavaScript/Reference/Global_Objects/Set)
