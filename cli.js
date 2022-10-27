@@ -9,43 +9,22 @@ const statsOpt = process.argv.includes('--stats');
 
 
 const mdLinks = (filePath, opt) => new Promise((resolve) => {
-  // if the path given is a directory, get the directory content, if the path given is a file, does not enter the recursive function
-  let dirFiles = [];
-  fct.isAFolder(filePath) ? dirFiles = [...dirFiles, ...fct.folderContent(filePath)] : dirFiles.push(filePath);
-  // get the .md file
-  const fileArray = fct.filteredArray(dirFiles);
-  // array of links
-  let links = [];
-  fileArray.forEach((file) => {
-    // read the files
-    const content = fct.readFile(file);
-    // obtain the urls
-    const linksFound = fct.regexGetLinks(content);
-    if (linksFound !== null || linksFound.length !== 0) {
-      // ensambles the array of objects
-      linksFound.forEach(link => {
-        return links.push({
-          file: file,
-          href: link[2],
-          text: link[1].slice(0, 50)
-        })
-      })
-    }
-  })
-  if (opt.validate === true && opt.stats === false) {
-    // axios.get for every link
-    const promisesArrayToResolve = fct.promises(links);
+// basic array of Links
+const allLinks = fct.linksBasic(filePath);
+
+  if (opt.validate === true) {
+       // axios.get for every link
+   const promisesArrayToResolve = fct.promises(allLinks);
     return Promise.all(promisesArrayToResolve)
       .then((result) => resolve(result));
-  } else if (opt.stats ===true && opt.validate === false) {
-    const arrLinksHref = links.map(link => link.href);
-    let arrOfStats =[];
-      arrOfStats.push ({
-        Total: arrLinksHref.length,
-        Unique: new Set(arrLinksHref).size
-      })
+
+  } else if (opt.stats ===true) {
+    const arrOfStats = fct.statsWithoutVal(allLinks);
 resolve (arrOfStats);
-  } /* else if (opt.validate === true && opt.stats === true) {
+} else {
+    return resolve(allLinks);
+  }
+ /*if (opt.validate === true && opt.stats === true) {
     let count = 0;
     links.forEach((link) =>{
       if(link.status)
@@ -58,11 +37,11 @@ resolve (arrOfStats);
     )
 
 
-  } */ else {
+  } else {
     return resolve(links);
   }
 
-  /* let links = '';
+  let links = '';
   fileArray.forEach((file) => {
    // read the files
     const content = fct.readFile(file);
