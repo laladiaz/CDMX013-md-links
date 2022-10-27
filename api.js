@@ -33,7 +33,7 @@ const mdLinks = (filePath, opt) => new Promise((resolve) => {
     return Promise.all(promisesArrayToResolve)
       .then((result) => resolve(result));
   } else {
-    return resolve(allLinks);
+    return resolve(links);
   }
 });
 
