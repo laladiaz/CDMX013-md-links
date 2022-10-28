@@ -1,5 +1,8 @@
 #!/usr/bin/env node
-const fct = require('./lib/fct.js');
+const { linksBasic } = require('./component/links.js');
+const { promises } = require('./component/promises.js');
+const { statsWithoutVal } = require('./component/stast.js');
+// const fct = require('./component/fct.js');
 
 const [, , filePath] = process.argv;
 const validateOpt = process.argv.includes('--validate');
@@ -8,9 +11,9 @@ const statsOpt = process.argv.includes('--stats');
 
 const mdLinks = (filePath, opt) => new Promise((resolve) => {
   // basic array of Links
-  const allLinks = fct.linksBasic(filePath);
-  const promisesArrayToResolve = fct.promises(allLinks);
-  const arrOfStats = fct.statsWithoutVal(allLinks);
+  const allLinks = linksBasic(filePath);
+  const promisesArrayToResolve = promises(allLinks);
+  const arrOfStats = statsWithoutVal(allLinks);
   if (opt.validate === true && opt.stats === false) {
     //show the validated links
     const validate = Promise.all(promisesArrayToResolve)
