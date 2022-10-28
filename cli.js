@@ -17,13 +17,8 @@ const mdLinks = (filePath, opt) => new Promise((resolve) => {
       .then((result) => (result))
       validate.then((result) =>{
         result.forEach((item) =>{
-          resolve (`
-        href: ${item.href}
-        text: ${item.text}
-        file: ${item.file}
-        status: ${item.status}
-        message: ${item.message}
-        `);
+          console.log (`
+file: ${item.file} | href: ${item.href} | text: ${item.text}  | status: ${item.status} | message: ${item.message}`);
         })
       })
   } else if (opt.validate === false && opt.stats === true) {
@@ -46,7 +41,10 @@ Broken: ${howManyBroken}
       });
     resolve(arrOfBroken)
   } else {
-    return resolve(allLinks);
+    allLinks.forEach((item) =>{
+      console.log (`
+file: ${item.file} | href: ${item.href} | text: ${item.text}`);
+    })
   }
 })
 
