@@ -5,6 +5,7 @@
   "parserOptions": {
     "ecmaVersion": 8
   },
+  "plugins": ["jest"],
   "rules": {
     "linebreak-style": 0,
     "prefer-destructuring": 0,
@@ -23,9 +24,14 @@
     "no-unreachable": 1,
     "no-use-before-define": 0,
     "constructor-super": 1,
-    "curly": 0,
-    "eqeqeq": 0,
+    "curly": 2,
+    "eqeqeq": 1,
     "func-names": 0,
-    "valid-typeof": 1
+    "valid-typeof": 1,
+    "jest/no-disabled-tests": "warn",
+    "jest/no-focused-tests": "error",
+    "jest/no-identical-title": "error",
+    "jest/prefer-to-have-length": "warn",
+    "jest/valid-expect": "error"
   }
 }
