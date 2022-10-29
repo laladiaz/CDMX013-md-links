@@ -1,14 +1,26 @@
 {
   "name": "md-links",
   "version": "0.1.0",
-  "engines": {
-    "node": ">=16.x"
-  },
-  "type": "commonjs",
   "bin":{
     "md-links": "./cli.js"
   },
+  "description": "A CLI used to parse the links inside a .md file, an API to be use for the same purpose",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": ">=16.x"
+  },
+  "author": "Lala Díaz Araque",
+  "license": "MIT",
   "dependencies": {
     "axios": "^1.1.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/laladiaz/CDMX013-md-links"
+  },
+  "bugs":"https://github.com/laladiaz/CDMX013-md-links/issues",
+  "homepage":"https://github.com/laladiaz/CDMX013-md-links/blob/main/README.md"
 }
