@@ -15,7 +15,7 @@ describe("prueba axios en promises", () => {
                 text: 'a broken link',
                 file: 'prueba2.md',
             },
-            { 
+            {
                 href: 'https://iamgood.com',
                 text: 'i am good',
                 file: 'prueba2.md'
