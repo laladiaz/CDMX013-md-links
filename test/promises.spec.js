@@ -2,8 +2,8 @@ const { promises } = require('../component/promises.js');
 
 jest.mock('../lib/fromAxios.js')
 
-describe("prueba axios en promises", () => {
-    test("respuesta de HTTP", (done) => {
+describe("tests axios in promises", () => {
+    test("HTTP answer", (done) => {
         const links = [
             {
                 href: 'https://somethingicantfound.com',
