@@ -2,7 +2,7 @@
 
 ## Diagramas de Flujo para API y CLI
 
-![Diagrama de flujo del funcionamiento de CLI y librería a vista del usuario](https://www.figma.com/file/LBmKyquBrrxoI7YViAHIi5/Mar%C3%ADa-D%C3%ADaz-MD-Link-flowchart?node-id=13%3A163)
+![Diagrama de flujo del funcionamiento de CLI y librería a vista del usuario](https://drive.google.com/file/d/1-U-RO1ZfO1KrC90tayGP4epiGfmgECVE/view?usp=sharing)
 
 ![Diagrama de flujo de la construcción de la API](https://www.figma.com/file/LBmKyquBrrxoI7YViAHIi5/Mar%C3%ADa-D%C3%ADaz-MD-Link-flowchart?node-id=20%3A790)
 
