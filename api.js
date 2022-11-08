@@ -3,7 +3,7 @@ const { linksBasic } = require('./component/links.js');
 const { promises } = require('./component/promises.js');
 
 
-const mdLinks = (filePath, opt) => new Promise((resolve, reject) => {
+const mdLinks = (filePath, opt = {validate: false}) => new Promise((resolve, reject) => {
   if(isReal(filePath)) {
   const allLinks = linksBasic(filePath);
 
