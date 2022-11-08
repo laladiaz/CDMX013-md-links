@@ -2,9 +2,15 @@
 
 ## Diagramas de Flujo para API y CLI
 
+Diagrama de flujo del funcionamiento de CLI y librería a vista del usuario
+
 ![Diagrama de flujo del funcionamiento de CLI y librería a vista del usuario](./img/image.png)
 
+Diagrama de flujo de la construcción de la API
+
 ![Diagrama de flujo de la construcción de la API](./img/image%20API.png)
+
+Digrama de flujo de la construcción del CLI
 
 ![Digrama de flujo de la construcción del CLI](./img/image%20CLI.png)
 
