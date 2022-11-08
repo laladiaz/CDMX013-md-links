@@ -1,8 +1,10 @@
+const { isReal } = require('./lib/fromFs.js');
 const { linksBasic } = require('./component/links.js');
 const { promises } = require('./component/promises.js');
 
 
-const mdLinks = (filePath, opt) => new Promise((resolve) => {
+const mdLinks = (filePath, opt) => new Promise((resolve, reject) => {
+  if(isReal(filePath)) {
   const allLinks = linksBasic(filePath);
 
   if (opt.validate === true) {
@@ -14,6 +16,9 @@ const mdLinks = (filePath, opt) => new Promise((resolve) => {
   } else {
     return resolve(allLinks);
   }
+} else {
+  reject(new Error("This path doesn't exist"));
+}
 });
 
 module.exports = {
