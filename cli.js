@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-const { linksBasic } = require('./component/links.js');
-const { promises } = require('./component/promises.js');
-const { statsWithoutVal } = require('./component/stast.js');
+const { linksBasic } = require('./utils/links.js');
+const { promises } = require('./utils/promises.js');
+const { statsWithoutVal } = require('./utils/stast.js');
 // const fct = require('./component/fct.js');
 
 const [, , filePath] = process.argv;

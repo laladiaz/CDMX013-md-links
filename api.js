@@ -1,6 +1,6 @@
 const { isReal } = require('./lib/fromFs.js');
-const { linksBasic } = require('./component/links.js');
-const { promises } = require('./component/promises.js');
+const { linksBasic } = require('./utils/links.js');
+const { promises } = require('./utils/promises.js');
 
 
 const mdLinks = (filePath, opt = {validate: false}) => new Promise((resolve, reject) => {
